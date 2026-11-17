@@ -278,7 +278,7 @@ button.finish-quick{background:#243148!important;color:#fff!important;border-rad
 #v68LabelCue strong{font-size:clamp(20px,5vw,26px);font-weight:900;letter-spacing:.01em}
 #v68LabelCue small{font-size:clamp(15px,4vw,19px);font-weight:750;letter-spacing:.015em}
 @media(prefers-reduced-motion:reduce){#v68LabelCue{transition:none}}
-#eanSizeConfirmPanel,#eanConfirm,#sharedEANCheckPanel,#sharedEANConfirm{display:none!important}#eanChoices .ean-choice,#sharedEANChoices .ean-choice{min-height:64px;cursor:pointer;touch-action:manipulation}</style></head><body><div id="scanVisual" class="hidden" role="status" aria-live="assertive"><div class="result"><div class="symbol" id="scanSymbol"></div><div class="status" id="scanStatus"></div><div class="detail" id="scanDetail"></div></div></div><header><div class="brand-head"><img src="logo-multiplo-mix.png" alt="Logo Múltiplo Mix Importados"><div>Bipador Universal<small>Conferência de pedidos</small><span class="app-version">V94 · TIKTOK E SHOPEE</span></div></div></header><main><section class="card" id="identification"><h2>Iniciar conferência</h2><p class="form-sub">Preencha seus dados para começar.</p><form id="identForm"><label class="form-label" for="operatorName">Nome</label><input autocomplete="name" id="operatorName" maxlength="100" placeholder="Nome do funcionário" required=""/><label class="form-label">Data e hora automáticas</label><div aria-live="polite" class="notice date-readonly" id="automaticDateTime"></div><label class="form-label" for="accountName">Conta</label><input id="accountName" list="accounts" maxlength="100" placeholder="Selecione ou digite a conta" required=""/><datalist id="accounts"></datalist><label class="form-label" for="listName">Lista</label><input id="listName" maxlength="120" placeholder="Identificação da lista" required=""/><button type="submit">Iniciar conferência →</button></form><button class="secondary" id="openCatalogBefore" type="button">⚙ Gerenciar EANs (responsável)</button></section><div class="hidden" id="workspace"><div aria-live="polite" class="quick-status small-status" id="quickStatus" role="status"></div><section class="card operator-card" id="operatorCard">
+#eanSizeConfirmPanel,#eanConfirm,#sharedEANCheckPanel,#sharedEANConfirm{display:none!important}#eanChoices .ean-choice,#sharedEANChoices .ean-choice{min-height:64px;cursor:pointer;touch-action:manipulation}</style></head><body><div id="scanVisual" class="hidden" role="status" aria-live="assertive"><div class="result"><div class="symbol" id="scanSymbol"></div><div class="status" id="scanStatus"></div><div class="detail" id="scanDetail"></div></div></div><header><div class="brand-head"><img src="logo-multiplo-mix.png" alt="Logo Múltiplo Mix Importados"><div>Bipador Universal<small>Conferência de pedidos</small><span class="app-version">V96 · FACAS E KITS</span></div></div></header><main><section class="card" id="identification"><h2>Iniciar conferência</h2><p class="form-sub">Preencha seus dados para começar.</p><form id="identForm"><label class="form-label" for="operatorName">Nome</label><input autocomplete="name" id="operatorName" maxlength="100" placeholder="Nome do funcionário" required=""/><label class="form-label">Data e hora automáticas</label><div aria-live="polite" class="notice date-readonly" id="automaticDateTime"></div><label class="form-label" for="accountName">Conta</label><input id="accountName" list="accounts" maxlength="100" placeholder="Selecione ou digite a conta" required=""/><datalist id="accounts"></datalist><label class="form-label" for="listName">Lista</label><input id="listName" maxlength="120" placeholder="Identificação da lista" required=""/><button type="submit">Iniciar conferência →</button></form><button class="secondary" id="openCatalogBefore" type="button">⚙ Gerenciar EANs (responsável)</button></section><div class="hidden" id="workspace"><div aria-live="polite" class="quick-status small-status" id="quickStatus" role="status"></div><section class="card operator-card" id="operatorCard">
 <div class="operator-topbar"><div class="operator-kicker"><span class="live-dot"></span><span id="miniSession">Conferência em andamento</span></div><button id="discardQuick" class="discard-quick hidden" type="button" aria-label="Descartar pedido atual">✕ Descartar pedido</button></div>
 <h2 class="stage-title" id="stageTitle">Leia a etiqueta do pedido</h2>
 <p class="stage-help" id="stageHelp">Aponte a câmera para o QR Code da etiqueta.</p>
@@ -520,7 +520,7 @@ function fashionStockV91(value){
  const first=/^(PP|GG|P|M|G)-/.test(base),size=first?s[1]:s[2];
  const colorKey=c=>c.replace(/(?:^|-)(PRETA|BRANCA|VERMELHA|AMARELA|ROXA)(?=-|$)/g,x=>({PRETA:'PRETO',BRANCA:'BRANCO',VERMELHA:'VERMELHO',AMARELA:'AMARELO',ROXA:'ROXO'}[x.replace(/^-/,'')]? (x.startsWith('-')?'-':'')+({PRETA:'PRETO',BRANCA:'BRANCO',VERMELHA:'VERMELHO',AMARELA:'AMARELO',ROXA:'ROXO'}[x.replace(/^-/,'')]):x))
   // V92: abreviação da cor nas três famílias de roupa, em qualquer ordem do tamanho.
-  .replace(/^(?:(?:AZ|AZUL)-)?(?:CNT|CANETA)$/,'AZUL-CANETA');
+  .replace(/^(?:(?:AZ|AZUL)-)?(?:CNT|CANETA|ROYAL)$/,'AZUL-CANETA');
  const color=colorKey(first?s[2]:s[1]);
  if(!color||/(?:^|-)(?:PP|GG|P|M|G|KIT|UN|UNID|VEST|REGATA)(?:-|$)/.test(color))return pieces.length>1?{invalid:true}:null;
  if(pieces[1]){
@@ -625,7 +625,7 @@ function commercialOneUnitV59(sku,variation){
  // V94: a descrição também precisa usar a equivalência CNT/CANETA das roupas.
  const clothing94=fashionStockV91(sku);
  if(clothing94&&!clothing94.invalid){
-  v=v73Key(variation).replace(/(^|-)(?:(?:AZ|AZUL)-)?(?:CNT|CANETA)(?=-|$)/g,'$1AZUL-CANETA');
+  v=v73Key(variation).replace(/(^|-)(?:(?:AZ|AZUL)-)?(?:CNT|CANETA|ROYAL)(?=-|$)/g,'$1AZUL-CANETA');
   const sizes=[...new Set(v.split('-').filter(t=>['PP','P','M','G','GG'].includes(t)))];
   if(sizes.length===1&&sizes[0]!==clothing94.size)throw Error('Roupa: tamanho do SKU e da descrição não coincide. Corrija a etiqueta.');
   if((/(?:^|-)REGATA(?:-|$)/.test(v)&&clothing94.model!=='R003')||(/(?:^|-)(?:VEST|VESTIDO)(?:-|$)/.test(v)&&clothing94.model==='R003'))throw Error('Roupa: modelo do SKU e da descrição não coincide.');
@@ -1551,6 +1551,8 @@ function knownPhysicalPackV93(sku,variation){
 }
 const TIKTOK_RULES_V94={"rules":{"WJ-2083|PADRAO":{"stockSku":"WJ-2083","unitsPerSet":1},"XFP-3370-BEGE|KIT-3-PARES-DE-ALMOFADA-BEGE":{"stockSku":"AB-168-BEGE","unitsPerSet":3},"XFP-3370-PRETA|KIT-3-PARES-DE-ALMOFADA-PRETA":{"stockSku":"AB-168-PRETO","unitsPerSet":3},"XFP-3370-ALEATORIA|KIT-3-PARES-DE-ALMOFADA-ALEATORIA":{"stockSku":"AB-168-ALEATORIA","unitsPerSet":3},"A5110|PRETO-KIT-COM-10-TOUCAS-ADULTO-PRETO":{"stockSku":"A5110-PRETO","unitsPerSet":10},"HE054|1-PACOTE-COM-8-DIVISORIAS":{"stockSku":"HE054","unitsPerSet":1},"WJ-1731-25UN|KIT-COM-25-UNIDADES":{"stockSku":"WJ-1731","unitsPerSet":25},"WJ-211-1UN-CZ|FITAS-ADESIVAS-CINZA-1-UNIDADE":{"stockSku":"WJ-211-CINZA","unitsPerSet":1},"AB-634-2-PARES|2-PARES-MEIA-DE-SILICONE-ROSA":{"stockSku":"AB-634-ROSA-UNICO","unitsPerSet":2},"AB-634-3-PARES|3-PARES-MEIA-DE-SILICONE-ROSA":{"stockSku":"AB-634-ROSA-UNICO","unitsPerSet":3},"WJ-1424|PRETA-MODELO-CHUVEIRINHO-PAREDE":{"stockSku":"WJ-1424-PRETO-PAREDE","unitsPerSet":1},"HE054|1-UNID-PACOTE-COM-8-DIVISORIAS":{"stockSku":"HE054","unitsPerSet":1},"WJ1701-AZUL|5-UNID-ISCA-AZUL":{"stockSku":"WJ-1701-AZUL","unitsPerSet":5},"WJ1701-VERMELHA|5-UNID-ISCA-VERMELHA":{"stockSku":"WJ-1701-VERMELHO","unitsPerSet":5},"WJ1701-MULTICOR|5-UNID-ISCA-MULTICOR":{"stockSku":"WJ-1701-MULTICOR","unitsPerSet":5},"WJ1701-VERDE|5-UNID-ISCA-VERDE":{"stockSku":"WJ-1701-VERDE","unitsPerSet":5},"WJ1701-PRATA|5-UNID-ISCA-PRATA":{"stockSku":"WJ-1701-PRATA","unitsPerSet":5},"1847|3-UNID-ANEL-BITS-MAGNETICO":{"stockSku":"INT-1847-ANEL-UN","unitsPerSet":3},"NS-1363|1-UNID-COCADOR-DE-COSTAS":{"stockSku":"NS-1363","unitsPerSet":1},"AB-634-KIT-2|2-UNID-PAR-DE-MEIA-SILICONE-HIDRATANTE-ROSA":{"stockSku":"AB-634-ROSA-UNICO","unitsPerSet":2},"AB-634-KIT-3|3-UNID-PAR-DE-MEIA-SILICONE-HIDRATANTE-ROSA":{"stockSku":"AB-634-ROSA-UNICO","unitsPerSet":3},"XFP-3370-3UN-BEGE|3UN-PAR-DE-ALMOFADA-PROTETORA-PARA-OS-PES-BEGE":{"stockSku":"AB-168-BEGE","unitsPerSet":3},"WJ-503-KIT-10-VERMELHO|10UN-FACAS-DE-COZINHA-VERMELHAS":{"stockSku":"INT-WJ503-VERMELHO-UN","unitsPerSet":10},"WJ-503-KIT-10-AZUL|10UN-FACAS-DE-COZINHA-AZUL":{"stockSku":"INT-WJ503-AZUL-UN","unitsPerSet":10},"WJ-503-KIT-10-AMARELO|10UN-FACAS-DE-COZINHA-AMARELAS":{"stockSku":"INT-WJ503-AMARELO-UN","unitsPerSet":10},"WJ-503-KIT-10-ROXO|10UN-FACAS-DE-COZINHA-ROXAS":{"stockSku":"INT-WJ503-ROXO-UN","unitsPerSet":10},"WJ-503-KIT-10-PRETO|10UN-FACAS-DE-COZINHA-PRETA":{"stockSku":"INT-WJ503-PRETO-UN","unitsPerSet":10},"WJ-503-KIT-10-ROSA|10UN-FACAS-DE-COZINHA-ROSA":{"stockSku":"INT-WJ503-ROSA-UN","unitsPerSet":10},"AB-634-2-PAR|2-PARES-MEIA-DE-SILICONE-HIDRATANTE":{"stockSku":"AB-634","unitsPerSet":2},"AB-634-3-PAR|3-PARES-MEIA-DE-SILICONE-HIDRATANTE":{"stockSku":"AB-634","unitsPerSet":3},"AB-634-5-PAR|5-PARES-MEIA-DE-SILICONE-HIDRATANTE":{"stockSku":"AB-634","unitsPerSet":5},"WJ-2279-2UN|2UN-FACA-ARTESANAL-CABO-PRETO":{"stockSku":"WJ-2279","unitsPerSet":2},"WJ-1610-2UN|2UN-FACA-ARTESANAL-CABO-COMUM":{"stockSku":"WJ-1610","unitsPerSet":2}}};
 function knownPhysicalPackV94(sku,variation){return TIKTOK_RULES_V94.rules[v73Key(sku)+"|"+v73Key(variation)]||null;}
+const PACK_RULES_V96={"WJ-503|KIT-C-20-COR-ALEATORIA":{"stockSku":"INT-WJ503-KIT10-COLORIDAS","unitsPerSet":2},"WJ-503|KIT-C-40-COR-ALEATORIA":{"stockSku":"INT-WJ503-KIT10-COLORIDAS","unitsPerSet":4},"WJ-503|KIT-10-FACAS-ALEATORIAS":{"stockSku":"INT-WJ503-KIT10-COLORIDAS","unitsPerSet":1},"WJ-503-10UN|1-KIT-10UN-FACA-DE-COZINHA":{"stockSku":"INT-WJ503-KIT10-COLORIDAS","unitsPerSet":1},"1610|PADRAO":{"stockSku":"WJ-1610","unitsPerSet":1},"WJ-503|1KIT-10-FACAS-DE-COZINHA-COR-ALEATORIA":{"stockSku":"INT-WJ503-KIT10-COLORIDAS","unitsPerSet":1},"WJ-503|10UN-FACAS-DE-COZINHA-COLORIDAS-ALEATORIAS":{"stockSku":"INT-WJ503-KIT10-COLORIDAS","unitsPerSet":1}};
+function knownPhysicalPackV96(s,v){return PACK_RULES_V96[v73Key(s)+"|"+v73Key(v)]||null;}
 function parseOrder(raw){
  const s=repairLegacyQrTextV62(repairLegacyQrTextV63(repairLegacyQrTextV64(repairLegacyQrTextV65(v72ExpandValidatedOrder(v73RepairText(raw)))))).replace(/\\r\\n|\\n|\\r/g,'\n').replace(/\r\n|\r/g,'\n').trim();
  const idMatch=s.match(/(?:^|[\s;])(?:PEDIDO|P)\s*:\s*(.*?)(?=\s*(?:RASTREIO|SKU)\s*:|$)/i);
@@ -1578,8 +1580,8 @@ function parseOrder(raw){
   if(embeddedRandom&&!variation)variation='ALEATORIA';
   // A modalidade ALEATORIA pode aparecer no SKU, no campo V:, ou em ambos.
   // O restante da descricao comercial nao deve ser acrescentado ao SKU fisico.
-  const knownPack=knownPhysicalPackV94(sku,variation)||knownPhysicalPackV93(sku,variation)||knownPhysicalPackV90(sku,variation)||knownPhysicalPackV84(sku,variation)||knownPhysicalPackV83(sku,variation)||knownPhysicalPackV80(sku,variation)||knownPhysicalPackV79(sku,variation)||knownPhysicalPackV78(sku,variation)||knownPhysicalPackV77(sku,variation)||knownPhysicalPackV76(sku,variation)||knownPhysicalPackV74(sku,variation)||knownPhysicalPackV73(sku,variation)||knownPhysicalPackV72(sku,variation)||knownPhysicalPackV71(sku,variation)||knownPhysicalPackV69(sku,variation)||knownPhysicalPackV67(sku,variation)||knownPhysicalPackV65(sku,variation)||knownPhysicalPackV64(sku,variation)||knownPhysicalPackV63(sku,variation)||knownPhysicalPackV62(sku,variation)||knownPhysicalPackV61(sku,variation)||knownPhysicalPackV60(sku,variation)||knownPhysicalPackV59(sku,variation);
-  const components=splitKitComponents(knownPack?.stockSku||sku),isKit=components.length>1,randomColor=embeddedRandom||commercialRandom;
+  const knownPack=knownPhysicalPackV96(sku,variation)||knownPhysicalPackV94(sku,variation)||knownPhysicalPackV93(sku,variation)||knownPhysicalPackV90(sku,variation)||knownPhysicalPackV84(sku,variation)||knownPhysicalPackV83(sku,variation)||knownPhysicalPackV80(sku,variation)||knownPhysicalPackV79(sku,variation)||knownPhysicalPackV78(sku,variation)||knownPhysicalPackV77(sku,variation)||knownPhysicalPackV76(sku,variation)||knownPhysicalPackV74(sku,variation)||knownPhysicalPackV73(sku,variation)||knownPhysicalPackV72(sku,variation)||knownPhysicalPackV71(sku,variation)||knownPhysicalPackV69(sku,variation)||knownPhysicalPackV67(sku,variation)||knownPhysicalPackV65(sku,variation)||knownPhysicalPackV64(sku,variation)||knownPhysicalPackV63(sku,variation)||knownPhysicalPackV62(sku,variation)||knownPhysicalPackV61(sku,variation)||knownPhysicalPackV60(sku,variation)||knownPhysicalPackV59(sku,variation);
+  const components=splitKitComponents(knownPack?.stockSku||sku),isKit=components.length>1,randomColor=(embeddedRandom||commercialRandom)&&knownPack?.stockSku!=='INT-WJ503-KIT10-COLORIDAS';
   const unitsPerSet=knownPack?knownPack.unitsPerSet:(!isKit?physicalUnitsPerSet(sku,variation):1);
   const physicalQty=q*unitsPerSet;
   if(physicalQty>9999)throw Error('Quantidade física acima do limite de 9999 unidades.');
@@ -1922,7 +1924,7 @@ function signal(ok,detail=''){if(!ok){errorCount++;persistList();}
  clearTimeout(visualTimer);visualTimer=setTimeout(()=>{panel.className='hidden'},ok?650:2400);if(!ok)v80CloseCameraOnError()
 }
 // V24: a leitura do EAN passa pelo catálogo. Um EAN compartilhado nunca aprova a cor sozinho.
-function check(raw,method='qr'){
+function check(raw,method='qr',observedSku=''){
  if(!order){showMessage('Leia primeiro o QR Code da etiqueta.','danger');logScan('PRODUTO',norm(raw),'ERRO');signal(false,'Leia primeiro a etiqueta');return false}
  const sku=norm(raw);
  if(/(?:^|[\s;])(?:P|PEDIDO|RASTREIO|SKU)\s*:|;\s*(?:Q|QTD)\s*:/i.test(sku)){
@@ -1931,6 +1933,10 @@ function check(raw,method='qr'){
  // Pedido de cor aleatória: o QR do produto precisa identificar uma cor
  // física. Se faltar o tamanho no QR, será confirmado visualmente.
  if(method==='qr'){
+  const exactFixed95=order.items.filter(i=>!i.randomColor&&i.read<i.qtd&&equivalentSku(i.sku,sku));
+  if(exactFixed95.length===1)return check(exactFixed95[0].sku,'qr-identificado',sku);
+  const identified=v95RegisteredRandomQR(sku,order.items);
+  if(identified)return check(identified.sku,'qr-identificado',sku);
   const targets=order.items.filter(i=>i.randomColor&&i.read<i.qtd&&hasSkuPrefix(i.baseSku,sku));
   if(targets.length===1){
    const item=targets[0],parts=skuKey(sku).slice(skuKey(item.baseSku).length).replace(/^-/, '').split('-').filter(Boolean);
@@ -1962,7 +1968,7 @@ function check(raw,method='qr'){
  item.read++;
  if(method==='visual'||method==='visual-qr')item.visual=(Number(item.visual)||0)+1;
  if(method==='ean')item.ean=(Number(item.ean)||0)+1;
- logScan(method==='visual'?'EAN VISUAL':method==='visual-qr'?'QR VISUAL':method==='ean'?'EAN':'PRODUTO',sku,method.startsWith('visual')?'VISUAL CONFIRMADO':'CORRETO');
+ logScan(method==='visual'?'EAN VISUAL':method==='visual-qr'?'QR VISUAL':method==='ean'?'EAN':'PRODUTO',observedSku||sku,method.startsWith('visual')?'VISUAL CONFIRMADO':'CORRETO');
  persistList();render();
  showMessage(order.items.every(i=>i.read===i.qtd)?'✅ TODOS OS PRODUTOS CONFERIDOS — pode finalizar.':order.kitGroups?.length?'✅ '+item.sku+' confirmado. Falta conferir o restante do kit.':method.startsWith('visual')?'✅ Conferência visual registrada — '+item.sku:'✅ PRODUTO CORRETO — '+item.sku+' ('+item.read+'/'+item.qtd+')','success');
  $('skuInput').value='';signal(true,method.startsWith('visual')?'Validação visual · '+item.sku:item.sku+' ('+item.read+'/'+item.qtd+')');
@@ -1975,7 +1981,27 @@ function check(raw,method='qr'){
  }
  return true;
 }
+// QRs físicos fornecidos pelo operador. Validar o pacote inteiro antes de contar qualquer componente.
+function scanPhysicalPackV96(raw){
+ const key=String(raw||'').trim().toUpperCase().replace(/\s+/g,' ');
+ const packs={
+ 'SKU: 5UN - WJ-1610':[['WJ-1610',5]],
+ 'SKU: 5UN WJ-2279':[['WJ-2279',5]],
+ 'SKU: 3UN - WJ-2279 + 2UN - WJ-1610':[['WJ-2279',3],['WJ-1610',2]],
+ 'SKU: WJ-503-KIT 10 FACAS COLORIDAS':[['INT-WJ503-KIT10-COLORIDAS',1]]
+ };
+ const parts=packs[key];if(!parts)return false;
+ if(!order){showMessage('Leia primeiro o QR da etiqueta do pedido.','danger');signal(false,'Leia primeiro o pedido');return true;}
+ const targets=parts.map(([sku,n])=>({n,items:order.items.filter(i=>!i.randomColor&&equivalentSku(i.sku,sku))}));
+ if(targets.some(t=>t.items.length!==1||t.items[0].qtd-t.items[0].read<t.n)){
+  showMessage('⛔ Pacote incompatível: composição ou quantidade maior que o saldo do pedido. Nenhuma peça contada.','danger');logScan('PACOTE',key,'ERRO');signal(false,'Pacote não corresponde');return true;
+ }
+ logScan('PACOTE',key,'COMPOSIÇÃO VALIDADA');
+ for(const t of targets){const sku=t.items[0].sku;for(let n=0;n<t.n;n++)check(sku,'qr-pacote',key);}
+ return true;
+}
 function processProductCode(raw){
+ if(scanPhysicalPackV96(raw))return;
  const code=String(raw||'').trim();
  if(/^\d{8}$|^\d{12}$|^\d{13}$/.test(code))return processEAN(code);
  return check(code,'qr');
@@ -3177,6 +3203,47 @@ function v78ModelAReview(rows,items){
  if(eligible.length!==1)return null;
  return {item:eligible[0],row};
 }
+// V95: códigos completos comprovados; nunca memorizar uma cor de EAN compartilhado.
+const V95_PHYSICAL_QRS=new Set(["220274-TRANSPARENTE", "60008-AZUL", "60008-PRETO", "A2020-BRANCO-3-6-ANOS-19-23", "A2020-BRANCO-6-9-ANOS", "A2020-BRANCO-8-10-ANOS-27-31", "A5070-PRETO-ADULTO", "A5110-ADULTO", "A5110-PRETO", "A8055-AZUL", "A8055-PRETA-LISTRADA", "A8055-VERDE", "A8055-VERMELHO", "A8100-BRANCO-38-44", "AB-168-BEGE", "AB-168-PRETO", "AB-634", "AB-634-ROSA-UNICO", "AB8055-AZUL", "AB8055-PRETO", "AB8055-VERDE", "AB8055-VERMELHO", "ATT-618-BEGE", "B5084-AZUL-MARINHO-4-8-ANOS", "B5084-AZUL-MARINHO-8-12-ANOS", "B5084-CINZA-4-8-ANOS", "B5084-CINZA-8-12-ANOS", "B5084-CINZA-CLARO-4-8-ANOS", "B5084-CINZA-CLARO-8-12-ANOS", "B5084-PINK-4-8-ANOS", "B5084-PINK-8-12-ANOS", "B5084-PRETO-4-8-ANOS", "B5084-PRETO-8-12-ANOS", "B5084-ROSA-CLARO-4-8-ANOS", "B5084-ROSA-CLARO-8-12-ANOS", "B5084-VERMELHO-4-8-ANOS", "B5084-VERMELHO-8-12-ANOS", "B5084-VINHO-4-8-ANOS", "B5084-VINHO-8-12-ANOS", "B5084-VIOLETA-4-8-ANOS", "B5084-VIOLETA-8-12-ANOS", "B9101-BRANCO-35-40", "HE054", "INT-1847-ANEL-UN", "INT-WJ503-AMARELO-UN", "INT-WJ503-AZUL-UN", "INT-WJ503-PRETO-UN", "INT-WJ503-ROSA-UN", "INT-WJ503-ROXO-UN", "INT-WJ503-VERMELHO-UN", "MC-40876-AMARELO", "MC-40876-AZUL", "MC-40876-PRETO", "MC-40876-ROSA", "MC-40876-VERDE", "NS-1363", "NS-1566-AMARELO", "NS-2580-AZUL", "NS-2580-PRETO", "NS-2744", "NS-5002", "R003-AMARELO-MANTEIGA-G", "R003-AMARELO-MANTEIGA-M", "R003-AMARELO-MANTEIGA-P", "R003-AZUL-CANETA-G", "R003-AZUL-CANETA-M", "R003-AZUL-CANETA-P", "R003-AZUL-CEU-G", "R003-AZUL-CEU-M", "R003-AZUL-CEU-P", "R003-AZUL-MARINHO-G", "R003-AZUL-MARINHO-M", "R003-AZUL-MARINHO-P", "R003-BRANCO-G", "R003-BRANCO-M", "R003-BRANCO-P", "R003-LILAS-G", "R003-LILAS-M", "R003-LILAS-P", "R003-MARROM-G", "R003-MARROM-M", "R003-MARROM-P", "R003-PISTACHE-G", "R003-PISTACHE-M", "R003-PISTACHE-P", "R003-PRETO-G", "R003-PRETO-M", "R003-PRETO-P", "R003-ROSA-BEBE-G", "R003-ROSA-BEBE-M", "R003-ROSA-BEBE-P", "R003-VERDE-AGUA-G", "R003-VERDE-AGUA-M", "R003-VERDE-AGUA-P", "R003-VERMELHO-G", "R003-VERMELHO-M", "R003-VERMELHO-P", "V002-AMARELO-MANTEIGA-G", "V002-AMARELO-MANTEIGA-M", "V002-AZUL-CANETA-G", "V002-AZUL-CANETA-M", "V002-AZUL-CEU-G", "V002-AZUL-CEU-M", "V002-AZUL-ROYAL-M", "V002-BRANCO-G", "V002-BRANCO-M", "V002-MARROM-G", "V002-MARROM-M", "V002-PINK-G", "V002-PINK-M", "V002-PISTACHE-G", "V002-PISTACHE-M", "V002-PRETO-G", "V002-PRETO-M", "V002-ROSA-BEBE-G", "V002-ROSA-BEBE-M", "V002-ROSA-G", "V002-ROSA-M", "V002-VERDE-AGUA-G", "V002-VERDE-AGUA-M", "V002-VERDE-MILITAR-G", "V002-VERDE-MILITAR-M", "V002-VERMELHO-PIMENTA-G", "V002-VERMELHO-PIMENTA-M", "VT001-AZUL-CANETA-G", "VT001-AZUL-CANETA-M", "VT001-AZUL-CANETA-P", "VT001-AZUL-MARINHO-G", "VT001-AZUL-MARINHO-M", "VT001-AZUL-MARINHO-P", "VT001-MARROM-G", "VT001-MARROM-M", "VT001-MARROM-P", "VT001-PINK-P", "VT001-POA-PRETO-G", "VT001-POA-PRETO-M", "VT001-POA-PRETO-P", "VT001-POA-VERMELHO-G", "VT001-POA-VERMELHO-M", "VT001-POA-VERMELHO-P", "VT001-PRETO-G", "VT001-PRETO-M", "VT001-PRETO-P", "VT001-VERDE-MILITAR-G", "VT001-VERDE-MILITAR-M", "VT001-VERDE-MILITAR-P", "VT001-VERMELHO-PIMENTA-G", "VT001-VERMELHO-PIMENTA-M", "VT001-VERMELHO-PIMENTA-P", "WJ-1424-PRETO-PAREDE", "WJ-1433-MODELO-A-PRETO", "WJ-1610", "WJ-1701-AZUL", "WJ-1701-MULTICOR", "WJ-1701-PRATA", "WJ-1701-VERDE", "WJ-1701-VERMELHO", "WJ-1731", "WJ-1847", "WJ-2083", "WJ-211-BRANCO", "WJ-211-CINZA", "WJ-2279", "WJ-2670-AZUL", "WJ-2670-PRATA", "WJ-2670-PRETO", "WJ-2670-ROSA", "WJ-2673-AMARELO", "WJ-2673-AZUL", "WJ-2673-AZUL-CLARO", "WJ-2673-ROSA", "WJ-847"].map(s=>skuKey(s)));
+function v95RegisteredRandomQR(scanned,items){
+ const code=skuKey(scanned);if(!V95_PHYSICAL_QRS.has(code)||hasRandomSkuMarker(code))return null;
+ if(shopColorsIn(code).length!==1)return null;
+ const allowed=new Set(['VT001','V002','R003','AB-168','MC-40876','WJ-211','WJ-1433-MODELO-A','A8055','AB8055']);
+ const sizes=code.split('-').filter(t=>SHOP_SIZE_TOKENS.has(t));
+ const candidates=items.filter(i=>i.randomColor&&i.read<i.qtd&&allowed.has(skuKey(i.baseSku))&&hasSkuPrefix(i.baseSku,code)&&
+  (!i.randomSize||(sizes.length===1&&sizes[0]===i.randomSize))&&
+  (!['R003','VT001','V002'].includes(skuKey(i.baseSku))||!!i.randomSize));
+ return candidates.length===1?candidates[0]:null;
+}
+function v95UniqueEAN(rows,options,items){
+ if(!rows.length||options.length!==1)return null;
+ // Todas as associações precisam concordar na referência, não somente a do pedido.
+ const codes=new Set(rows.map(r=>skuKey(r.sku)));if(codes.size!==1)return null;
+ const candidate=options[0],code=skuKey(candidate.sku);
+ const codeColors=shopColorsIn(code);
+ if(candidate.source==='completo'&&rows.some(r=>{
+  const described=shopColorsIn(v73Key([r.cor,r.variacoes].filter(Boolean).join(' ')));
+  const taggedSizes=code.split('-').filter(t=>SHOP_SIZE_TOKENS.has(t)),declaredSize=skuKey(r.tamanho||'');
+  return (described.length&&(!codeColors.length||described.some(c=>!codeColors.includes(c))))||
+   (SHOP_SIZE_TOKENS.has(declaredSize)&&taggedSizes.length>0&&!taggedSizes.includes(declaredSize));
+ }))return null;
+ if(candidate.source==='completo'&&[...codes][0]===code){
+  const random=v95RegisteredRandomQR(code,items);if(random)return random;
+ }
+ const matches=items.filter(i=>!i.randomColor&&i.read<i.qtd&&equivalentSku(i.sku,code));
+ if(matches.length!==1)return null;
+ const item=matches[0];
+ // Referência base exata e sem atributos: o EAN confirma o produto pedido.
+ if(candidate.source==='familia-visual'){
+  if(rows.every(r=>!r.cor&&!r.tamanho&&!r.variacoes)&&skuKey(item.sku)===skuKey(rows[0].sku))return item;
+  return null;
+ }
+ // Cor aleatória no cadastro base não comprova uma cor física exclusiva.
+ if(rows.some(r=>r.aleatoria&&skuKey(r.sku)!==code))return null;
+ const match=eanVisualMatch(candidate,item);
+ return match&&!match.missingSize&&!match.visualOnly?item:null;
+}
+
 function processEAN(raw){
  const code=cleanEAN(raw);
  if(!order){showMessage('Leia primeiro o QR Code da etiqueta.','danger');signal(false,'Leia primeiro a etiqueta');return}
@@ -3213,11 +3280,14 @@ function processEAN(raw){
  // Nunca autorizar a correspondência por texto, sem observar o produto.
  const lhamaAlias=matchLhamaAliasReview(code,rows,order.items);
  if(lhamaAlias){openLhamaAliasReview(code,lhamaAlias);return;}
+ const sharedOptions=sharedEANOptions(rows);
+ const identified95=v95UniqueEAN(rows,sharedOptions,order.items);
+ if(identified95){check(identified95.sku,'ean',sharedOptions[0].sku);return;}
  // V57: uma mesma familia com diversas cores no cadastro nao significa
  // EAN compartilhado entre MODELOS. Em pedido de COR ALEATORIA, priorizar
  // a conferencia visual da cor; rejeitar outros modelos no mesmo EAN.
- // Cor aleatória NUNCA é aprovada automaticamente pelo EAN.
- // Mesmo que esteja autorizada, o funcionário escolhe a cor física.
+ // EAN de família/compartilhado ainda exige observação da cor física.
+ // Códigos exclusivos completos já foram tratados pela validação V95 acima.
  const randomCandidates=order.items.filter(i=>i.randomColor&&i.read<i.qtd&&
   rows.some(r=>hasSkuPrefix(i.baseSku,r.sku)));
  if(randomCandidates.length){
@@ -3233,7 +3303,6 @@ function processEAN(raw){
  // Detecta modelos/variacoes diferentes compartilhando o MESMO EAN.
  // Se ha varias opcoes fisicas possiveis, a escolha visual e obrigatoria,
  // independentemente de quantos SKUs aparecem no pedido.
- const sharedOptions=sharedEANOptions(rows);
  if(sharedOptions.length>1){openSharedEANReview(code,sharedOptions);return;}
  // V50: na familia 1417, o codigo sem A/B e o modelo UNIVERSAL em si,
  // nao um SKU-base generico. Se o EAN exclusivo estiver cadastrado exatamente
