@@ -278,7 +278,7 @@ button.finish-quick{background:#243148!important;color:#fff!important;border-rad
 #v68LabelCue strong{font-size:clamp(20px,5vw,26px);font-weight:900;letter-spacing:.01em}
 #v68LabelCue small{font-size:clamp(15px,4vw,19px);font-weight:750;letter-spacing:.015em}
 @media(prefers-reduced-motion:reduce){#v68LabelCue{transition:none}}
-#eanSizeConfirmPanel,#eanConfirm,#sharedEANCheckPanel,#sharedEANConfirm{display:none!important}#eanChoices .ean-choice,#sharedEANChoices .ean-choice{min-height:64px;cursor:pointer;touch-action:manipulation}</style></head><body><div id="scanVisual" class="hidden" role="status" aria-live="assertive"><div class="result"><div class="symbol" id="scanSymbol"></div><div class="status" id="scanStatus"></div><div class="detail" id="scanDetail"></div></div></div><header><div class="brand-head"><img src="logo-multiplo-mix.png" alt="Logo Múltiplo Mix Importados"><div>Bipador Universal<small>Conferência de pedidos</small><span class="app-version">V99 · BIPAGEM DIRETA</span></div></div></header><main><section class="card" id="identification"><h2>Iniciar conferência</h2><p class="form-sub">Preencha seus dados para começar.</p><form id="identForm"><label class="form-label" for="operatorName">Nome</label><input autocomplete="name" id="operatorName" maxlength="100" placeholder="Nome do funcionário" required=""/><label class="form-label">Data e hora automáticas</label><div aria-live="polite" class="notice date-readonly" id="automaticDateTime"></div><label class="form-label" for="accountName">Conta</label><input id="accountName" list="accounts" maxlength="100" placeholder="Selecione ou digite a conta" required=""/><datalist id="accounts"></datalist><label class="form-label" for="listName">Lista</label><input id="listName" maxlength="120" placeholder="Identificação da lista" required=""/><button type="submit">Iniciar conferência →</button></form><button class="secondary" id="openCatalogBefore" type="button">⚙ Gerenciar EANs (responsável)</button></section><div class="hidden" id="workspace"><div aria-live="polite" class="quick-status small-status" id="quickStatus" role="status"></div><section class="card operator-card" id="operatorCard">
+#eanSizeConfirmPanel,#eanConfirm,#sharedEANCheckPanel,#sharedEANConfirm{display:none!important}#eanChoices .ean-choice,#sharedEANChoices .ean-choice{min-height:64px;cursor:pointer;touch-action:manipulation}</style></head><body><div id="scanVisual" class="hidden" role="status" aria-live="assertive"><div class="result"><div class="symbol" id="scanSymbol"></div><div class="status" id="scanStatus"></div><div class="detail" id="scanDetail"></div></div></div><header><div class="brand-head"><img src="logo-multiplo-mix.png" alt="Logo Múltiplo Mix Importados"><div>Bipador Universal<small>Conferência de pedidos</small><span class="app-version">V101 · CONFERÊNCIA POR EAN</span></div></div></header><main><section class="card" id="identification"><h2>Iniciar conferência</h2><p class="form-sub">Preencha seus dados para começar.</p><form id="identForm"><label class="form-label" for="operatorName">Nome</label><input autocomplete="name" id="operatorName" maxlength="100" placeholder="Nome do funcionário" required=""/><label class="form-label">Data e hora automáticas</label><div aria-live="polite" class="notice date-readonly" id="automaticDateTime"></div><label class="form-label" for="accountName">Conta</label><input id="accountName" list="accounts" maxlength="100" placeholder="Selecione ou digite a conta" required=""/><datalist id="accounts"></datalist><label class="form-label" for="listName">Lista</label><input id="listName" maxlength="120" placeholder="Identificação da lista" required=""/><button type="submit">Iniciar conferência →</button></form><button class="secondary" id="openCatalogBefore" type="button">⚙ Gerenciar EANs (responsável)</button></section><div class="hidden" id="workspace"><div aria-live="polite" class="quick-status small-status" id="quickStatus" role="status"></div><section class="card operator-card" id="operatorCard">
 <div class="operator-topbar"><div class="operator-kicker"><span class="live-dot"></span><span id="miniSession">Conferência em andamento</span></div><button id="discardQuick" class="discard-quick hidden" type="button" aria-label="Descartar pedido atual">✕ Descartar pedido</button></div>
 <h2 class="stage-title" id="stageTitle">Leia a etiqueta do pedido</h2>
 <p class="stage-help" id="stageHelp">Aponte a câmera para o QR Code da etiqueta.</p>
@@ -1560,6 +1560,21 @@ function knownPhysicalPackV98(s,v){return RULES_V98[v73Key(s)+"|"+v73Key(v)]||nu
 const BLOCKED_V99={"NS-4991-AZ|AZUL":"NS-4991: an\u00fancio de kit completo com touca, \u00f3culos e protetores. Faltam refer\u00eancias dos componentes; n\u00e3o aprovar como item avulso.","1934|1-UNIDADE":"SKU 1934 compartilhado por discos 110 mm e 200 mm nos an\u00fancios. Informe o di\u00e2metro na refer\u00eancia e gere nova etiqueta."};
 const RULES_V99={"NS-4791|1UN-CAPA-PROTETORA-PRA-TENIS-43-44":{"stockSku":"NS-4791-43-44","unitsPerSet":1},"120-PRATA|1UN-TORNEIRA-LUXO-PRATA":{"stockSku":"120-PRATA","unitsPerSet":1},"4975-AZUL-CLARO|1UN-BOIA-ESTEIRA-AZUL-CLARO":{"stockSku":"4975-AZUL-CLARO","unitsPerSet":1},"CG9248-AZUL|1-UNID-MOCHILA-LHAMA-AZUL":{"stockSku":"CG9248-AZUL","unitsPerSet":1},"WJ-503-VERDE-10UN|10UN-FACAS-DE-COZINHA-VERDES":{"stockSku":"INT-WJ503-VERDE-UN","unitsPerSet":10},"MF-8006-ROXO|1UN-MOCHILA-CACHORRINHO-ROXO":{"stockSku":"MF-8006-ROXO","unitsPerSet":1},"WJ1515|PADRAO":{"stockSku":"WJ1515","unitsPerSet":1},"B5205-BG|TOUCA-DINO-3D-BEGE":{"stockSku":"B5205-BEGE","unitsPerSet":1},"A5114-RS|TOUCA-MAMA-S-MINI-ROSA":{"stockSku":"A5114-MINI-ROSA","unitsPerSet":1},"MC12467|1UN-BOIA-DE-BRACO-AZUL":{"stockSku":"MC12467-AZUL","unitsPerSet":1},"WJ-503-K6-LILAS|":{"stockSku":"INT-WJ503-LILAS-UN","unitsPerSet":6}};
 function knownPhysicalPackV99(s,v){const key=v73Key(s)+"|"+v73Key(v);if(BLOCKED_V99[key])throw Error(BLOCKED_V99[key]);return RULES_V99[key]||null;}
+function confirmedPackV100(sku, variation) {
+ const model = v73Key(sku);
+ const option = v73Key(variation);
+ if (model === 'KIT-ADULTO' && option === 'PADRAO')
+  return {stockSku:'TOUCA-INVERNO-ADULTO + A5070', unitsPerSet:1};
+ if (['MC40876','MC-40876'].includes(model) && option === 'PADRAO')
+  return {stockSku:'MC-40876', unitsPerSet:1, anyColor:true};
+ for (const [color, short] of [['AZUL','AZ'],['PRETO','PT']]) {
+  if ([`NS-4991-KIT-${color}`, `NS-4991-${short}`, `NS-4991-${color}`].includes(model)
+   && [color, `1UN-KIT-TOUCA-OCULOS-DE-NATACAO-${color}`].includes(option))
+   return {stockSku:'NS-4991-'+color, unitsPerSet:1};
+ }
+ return null;
+}
+
 function parseOrder(raw){
  const s=repairLegacyQrTextV62(repairLegacyQrTextV63(repairLegacyQrTextV64(repairLegacyQrTextV65(v72ExpandValidatedOrder(v73RepairText(raw)))))).replace(/\\r\\n|\\n|\\r/g,'\n').replace(/\r\n|\r/g,'\n').trim();
  const idMatch=s.match(/(?:^|[\s;])(?:PEDIDO|P)\s*:\s*(.*?)(?=\s*(?:RASTREIO|SKU)\s*:|$)/i);
@@ -1587,8 +1602,8 @@ function parseOrder(raw){
   if(embeddedRandom&&!variation)variation='ALEATORIA';
   // A modalidade ALEATORIA pode aparecer no SKU, no campo V:, ou em ambos.
   // O restante da descricao comercial nao deve ser acrescentado ao SKU fisico.
-  const knownPack=knownPhysicalPackV99(sku,variation)||knownPhysicalPackV98(sku,variation)||knownPhysicalPackV97(sku,variation)||knownPhysicalPackV96(sku,variation)||knownPhysicalPackV94(sku,variation)||knownPhysicalPackV93(sku,variation)||knownPhysicalPackV90(sku,variation)||knownPhysicalPackV84(sku,variation)||knownPhysicalPackV83(sku,variation)||knownPhysicalPackV80(sku,variation)||knownPhysicalPackV79(sku,variation)||knownPhysicalPackV78(sku,variation)||knownPhysicalPackV77(sku,variation)||knownPhysicalPackV76(sku,variation)||knownPhysicalPackV74(sku,variation)||knownPhysicalPackV73(sku,variation)||knownPhysicalPackV72(sku,variation)||knownPhysicalPackV71(sku,variation)||knownPhysicalPackV69(sku,variation)||knownPhysicalPackV67(sku,variation)||knownPhysicalPackV65(sku,variation)||knownPhysicalPackV64(sku,variation)||knownPhysicalPackV63(sku,variation)||knownPhysicalPackV62(sku,variation)||knownPhysicalPackV61(sku,variation)||knownPhysicalPackV60(sku,variation)||knownPhysicalPackV59(sku,variation);
-  const components=splitKitComponents(knownPack?.stockSku||sku),isKit=components.length>1,randomColor=(embeddedRandom||commercialRandom)&&knownPack?.stockSku!=='INT-WJ503-KIT10-COLORIDAS';
+  const knownPack=confirmedPackV100(sku,variation)||knownPhysicalPackV99(sku,variation)||knownPhysicalPackV98(sku,variation)||knownPhysicalPackV97(sku,variation)||knownPhysicalPackV96(sku,variation)||knownPhysicalPackV94(sku,variation)||knownPhysicalPackV93(sku,variation)||knownPhysicalPackV90(sku,variation)||knownPhysicalPackV84(sku,variation)||knownPhysicalPackV83(sku,variation)||knownPhysicalPackV80(sku,variation)||knownPhysicalPackV79(sku,variation)||knownPhysicalPackV78(sku,variation)||knownPhysicalPackV77(sku,variation)||knownPhysicalPackV76(sku,variation)||knownPhysicalPackV74(sku,variation)||knownPhysicalPackV73(sku,variation)||knownPhysicalPackV72(sku,variation)||knownPhysicalPackV71(sku,variation)||knownPhysicalPackV69(sku,variation)||knownPhysicalPackV67(sku,variation)||knownPhysicalPackV65(sku,variation)||knownPhysicalPackV64(sku,variation)||knownPhysicalPackV63(sku,variation)||knownPhysicalPackV62(sku,variation)||knownPhysicalPackV61(sku,variation)||knownPhysicalPackV60(sku,variation)||knownPhysicalPackV59(sku,variation);
+  const components=splitKitComponents(knownPack?.stockSku||sku),isKit=components.length>1,randomColor=(knownPack?.anyColor||embeddedRandom||commercialRandom)&&knownPack?.stockSku!=='INT-WJ503-KIT10-COLORIDAS';
   const unitsPerSet=knownPack?knownPack.unitsPerSet:(!isKit?physicalUnitsPerSet(sku,variation):1);
   const physicalQty=q*unitsPerSet;
   if(physicalQty>9999)throw Error('Quantidade física acima do limite de 9999 unidades.');
@@ -3258,6 +3273,14 @@ function processEAN(raw){
  if(!order){showMessage('Leia primeiro o QR Code da etiqueta.','danger');signal(false,'Leia primeiro a etiqueta');return}
  const rows=eanMatches(code);
  if(!rows.length){showMessage('⛔ EAN NÃO CADASTRADO — '+code+'. Cadastre a associação no gerenciamento.','danger');logScan('EAN',code,'DESCONHECIDO');signal(false,'EAN não cadastrado');return}
+ // O pedido de cor livre aceita qualquer peça do modelo identificado pelo EAN.
+ if (rows.every(row => skuKey(row.sku) === 'MC-40876')) {
+  const pending = order.items.filter(item => item.read < item.qtd && hasSkuPrefix('MC-40876',item.sku));
+  if (pending.length === 1 && pending[0].randomColor && !pending[0].randomSize) {
+   check(pending[0].sku,'ean',code);
+   return;
+  }
+ }
  // V71: touca ADULTO preta: o EAN pode ter sido cadastrado sem a palavra ADULTO.
  // Quando o próprio cadastro informa ADULTO, aceitar o SKU completo; quando não
  // informa, exigir apenas UMA seleção visual de tamanho/cor, sem autoaprovar.
