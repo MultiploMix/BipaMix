@@ -211,7 +211,7 @@ button.finish-quick{background:#243148!important;color:#fff!important;border-rad
 #sessionSettings{padding:12px 0}
 #sessionSettings #sessionInfo{font-size:13px!important;line-height:1.6!important;overflow-wrap:anywhere}
 #sessionSettings button{font-size:14px!important}
-#scanVisual{z-index:99999!important}
+#scanVisual{z-index:99999!important;pointer-events:none}
 @media(max-width:370px){.operator-card .stage-title{font-size:20px!important}.section-mini-head h2{font-size:15px!important}.recent-row small{font-size:10px}}
 /* V35 — kits: componentes obrigatórios separados, sem poluir a tela. */
 .kit-info{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff4e8;border:1px solid #f0d2af;border-radius:12px;color:#6a4324;padding:10px 12px;margin:10px 0;font-size:13px;font-weight:650}
@@ -278,7 +278,7 @@ button.finish-quick{background:#243148!important;color:#fff!important;border-rad
 #v68LabelCue strong{font-size:clamp(20px,5vw,26px);font-weight:900;letter-spacing:.01em}
 #v68LabelCue small{font-size:clamp(15px,4vw,19px);font-weight:750;letter-spacing:.015em}
 @media(prefers-reduced-motion:reduce){#v68LabelCue{transition:none}}
-#eanSizeConfirmPanel,#eanConfirm,#sharedEANCheckPanel,#sharedEANConfirm{display:none!important}#eanChoices .ean-choice,#sharedEANChoices .ean-choice{min-height:64px;cursor:pointer;touch-action:manipulation}</style></head><body><div id="scanVisual" class="hidden" role="status" aria-live="assertive"><div class="result"><div class="symbol" id="scanSymbol"></div><div class="status" id="scanStatus"></div><div class="detail" id="scanDetail"></div></div></div><header><div class="brand-head"><img src="logo-multiplo-mix.png" alt="Logo Múltiplo Mix Importados"><div>Bipador Universal<small>Conferência de pedidos</small><span class="app-version">V107 · CONFERÊNCIA POR EAN E SKU</span></div></div></header><main><section class="card" id="identification"><h2>Iniciar conferência</h2><p class="form-sub">Preencha seus dados para começar.</p><form id="identForm"><label class="form-label" for="operatorName">Nome</label><input autocomplete="name" id="operatorName" maxlength="100" placeholder="Nome do funcionário" required=""/><label class="form-label">Data e hora automáticas</label><div aria-live="polite" class="notice date-readonly" id="automaticDateTime"></div><label class="form-label" for="accountName">Conta</label><input id="accountName" list="accounts" maxlength="100" placeholder="Selecione ou digite a conta" required=""/><datalist id="accounts"></datalist><label class="form-label" for="listName">Lista</label><input id="listName" maxlength="120" placeholder="Identificação da lista" required=""/><button type="submit">Iniciar conferência →</button></form><button class="secondary" id="openCatalogBefore" type="button">⚙ Gerenciar EANs (responsável)</button></section><div class="hidden" id="workspace"><div aria-live="polite" class="quick-status small-status" id="quickStatus" role="status"></div><section class="card operator-card" id="operatorCard">
+#eanSizeConfirmPanel,#eanConfirm,#sharedEANCheckPanel,#sharedEANConfirm{display:none!important}#eanChoices .ean-choice,#sharedEANChoices .ean-choice{min-height:64px;cursor:pointer;touch-action:manipulation}</style></head><body><div id="scanVisual" class="hidden" role="status" aria-live="assertive"><div class="result"><div class="symbol" id="scanSymbol"></div><div class="status" id="scanStatus"></div><div class="detail" id="scanDetail"></div></div></div><header><div class="brand-head"><img src="logo-multiplo-mix.png" alt="Logo Múltiplo Mix Importados"><div>Bipador Universal<small>Conferência de pedidos</small><span class="app-version">V109 · CONFERÊNCIA POR EAN E SKU</span></div></div></header><main><section class="card" id="identification"><h2>Iniciar conferência</h2><p class="form-sub">Preencha seus dados para começar.</p><form id="identForm"><label class="form-label" for="operatorName">Nome</label><input autocomplete="name" id="operatorName" maxlength="100" placeholder="Nome do funcionário" required=""/><label class="form-label">Data e hora automáticas</label><div aria-live="polite" class="notice date-readonly" id="automaticDateTime"></div><label class="form-label" for="accountName">Conta</label><input id="accountName" list="accounts" maxlength="100" placeholder="Selecione ou digite a conta" required=""/><datalist id="accounts"></datalist><label class="form-label" for="listName">Lista</label><input id="listName" maxlength="120" placeholder="Identificação da lista" required=""/><button type="submit">Iniciar conferência →</button></form><button class="secondary" id="openCatalogBefore" type="button">⚙ Gerenciar EANs (responsável)</button></section><div class="hidden" id="workspace"><div aria-live="polite" class="quick-status small-status" id="quickStatus" role="status"></div><section class="card operator-card" id="operatorCard">
 <div class="operator-topbar"><div class="operator-kicker"><span class="live-dot"></span><span id="miniSession">Conferência em andamento</span></div><button id="discardQuick" class="discard-quick hidden" type="button" aria-label="Descartar pedido atual">✕ Descartar pedido</button></div>
 <h2 class="stage-title" id="stageTitle">Leia a etiqueta do pedido</h2>
 <p class="stage-help" id="stageHelp">Aponte a câmera para o QR Code da etiqueta.</p>
@@ -1572,9 +1572,10 @@ function labelPackV104(sku, variation){
   const printed=description.match(/^1-?UN-(?:VEST(?:IDO)?-)?(POA-VERMELH[OA]|(?:VM|VERM|VERMELH[OA]|VERMELH-[OA])-PIMENTA)-?(PP|GG|P|M|G)(?:-\d+-?AO-?\d+)?$/);
   if(printed){
    const color=printed[1].startsWith('POA-')?'POA-VERMELHO':'VERMELHO-PIMENTA';
-   if(color!==clothing.color||printed[2]!==clothing.size)
+   const skuColor=clothing.color==='POA-VERMLHO'?'POA-VERMELHO':clothing.color;
+   if(color!==skuColor||printed[2]!==clothing.size)
     throw Error('Vestido VT001: cor ou tamanho diverge da descrição.');
-   return {stockSku:clothing.key,unitsPerSet:1};
+   return {stockSku:'VT001-'+color+'-'+clothing.size,unitsPerSet:1};
   }
  }
  if(clothing?.model==='V002'){
@@ -1883,7 +1884,12 @@ function validateSkuAmbiguity(items){
  }
 }
 // V80 - qualquer erro durante a leitura fecha a camera e deixa o alerta no painel principal.
-function v80CloseCameraOnError(){
+// Produto rejeitado durante uma leitura: permita tentar outra peça na mesma sessão.
+function keepCameraAfterProductRejection(){
+ return !!(scanning&&busy&&activeScanType==='product'&&order);
+}
+function v80CloseCameraOnError(force=false){
+ if(!force&&keepCameraAfterProductRejection())return;
  if(!scanning || $('cameraPanel').classList.contains('hidden'))return;
  $('cameraPanel').classList.add('hidden');
  document.body.classList.remove('camera-open','scanning-product');
@@ -2007,7 +2013,7 @@ function signal(ok,detail=''){if(!ok){errorCount++;persistList();}
  $('scanSymbol').innerHTML=ok?'<svg viewBox="0 0 150 150" aria-label="Correto"><path d="M20 79 L58 115 L130 35"/></svg>':'<svg viewBox="0 0 150 150" aria-label="Errado"><path d="M30 30 L120 120 M120 30 L30 120"/></svg>';
  $('scanStatus').textContent=ok?'CORRETO':'ERRADO';
  $('scanDetail').textContent=detail||(ok?'Leitura confirmada':'Leitura rejeitada');
- clearTimeout(visualTimer);visualTimer=setTimeout(()=>{panel.className='hidden'},ok?650:2400);if(!ok)v80CloseCameraOnError()
+ clearTimeout(visualTimer);visualTimer=setTimeout(()=>{panel.className='hidden'},ok?650:keepCameraAfterProductRejection()?850:2400);if(!ok)v80CloseCameraOnError()
 }
 // V24: a leitura do EAN passa pelo catálogo. Um EAN compartilhado nunca aprova a cor sozinho.
 function check(raw,method='qr',observedSku=''){
@@ -2220,6 +2226,34 @@ function cameraCapabilities(reader,track){
  try{return reader?.getRunningTrackCapabilities?.()||track?.getCapabilities?.()||{}}
  catch(e){try{return track?.getCapabilities?.()||{}}catch(e){return {}}}
 }
+async function improveCameraCapture(track,caps){
+ if(!track?.applyConstraints||!track.getSettings||!track.getConstraints)return;
+ try{
+  const current=track.getSettings();
+  const previous=track.getConstraints();
+  const preferred={...previous};
+  const portrait=current.height>current.width;
+  for(const [axis,target] of [['width',portrait?1080:1920],['height',portrait?1920:1080]]){
+   const maximum=caps[axis]?.max;
+   const ideal=Math.min(target,maximum);
+   if(Number.isFinite(current[axis])&&Number.isFinite(ideal)&&ideal>current[axis]&&previous[axis]?.exact===undefined){
+    const limit=previous[axis]?.max??maximum;
+    const bounded=Math.min(ideal,limit);
+    if(bounded>current[axis]){
+     const existing=typeof previous[axis]==='object'?previous[axis]:{};
+     preferred[axis]={...existing,ideal:bounded};
+    }
+   }
+  }
+  if(Array.isArray(caps.focusMode)&&caps.focusMode.includes('continuous')&&
+     current.focusMode!=='continuous'&&previous.focusMode?.exact===undefined)
+   preferred.focusMode={ideal:'continuous'};
+  if(Object.keys(preferred).some(key=>preferred[key]!==previous[key]))
+   await track.applyConstraints(preferred);
+ }catch(error){
+  // A câmera já está ativa. Uma preferência recusada preserva a captura original.
+ }
+}
 function configureCameraZoom(reader,track,caps){
  const zoom=caps?.zoom;
  if(!zoom||!Number.isFinite(Number(zoom.min))||!Number.isFinite(Number(zoom.max))||Number(zoom.max)<=Number(zoom.min))return;
@@ -2414,13 +2448,16 @@ async function scan(type,usarLeitorPadrao=false){
    }catch(e){
     showMessage('Falha na leitura: '+(e?.message||e),'danger');
     signal(false,'Erro na leitura — câmera fechada');
+    v80CloseCameraOnError(true);
     // V80: nao retomar scanner depois da leitura rejeitada.
    }finally{busy=false;v70WakeReader(reader,token,Math.max(65,v66CooldownUntil-Date.now()+65));}
   },()=>{});
   if(token!==scanGeneration||scanning!==reader){try{await reader.stop()}catch(e){}try{reader.clear()}catch(e){}return;}
-  // Não usar outro getUserMedia, getCameras, resolução forçada ou foco avançado.
+  // Ajuste opcional do stream atual, sem solicitar outra câmera.
   activeVideoTrack=cameraTrack(reader);
   const caps=cameraCapabilities(reader,activeVideoTrack);
+  await improveCameraCapture(activeVideoTrack,caps);
+  if(token!==scanGeneration||scanning!==reader)return;
   configureCameraZoom(reader,activeVideoTrack,caps);
   const torchBtn=$('torchButton');
   torchBtn.onclick=toggleTorch;
@@ -2435,6 +2472,11 @@ async function scan(type,usarLeitorPadrao=false){
    if(token!==scanGeneration||scanning!==reader)return;
    const video=$('reader').querySelector('video');
    if(!video||video.readyState<2||video.videoWidth===0){
+    if(reader.isWasm&&window.Html5Qrcode){
+     wasmDisabledForSession=true;
+     void scan(activeScanType||type,true);
+     return;
+    }
     cameraStatus('Sem imagem? Toque em ↻ para reiniciar a câmera.',4500);
    }
   },2200);
